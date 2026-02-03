@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Header scroll state and Parallax logic
-    const header = document.querySelector('header');
+    const header = document.getElementById('main-header');
     const heroContent = document.querySelector('.hero-content');
     const heroImg = document.querySelector('.hero-img');
 
