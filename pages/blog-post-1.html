@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Language of Light | Aurora Journal</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@200;300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+            <nav id="navbar">
+                <a href="blog.html" class="mobile-back-btn" aria-label="Go Back">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </a>
+                <a href="../index.html" class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" />
+                        <path d="M30 70 L50 30 L70 70 M40 55 L60 55" fill="none" stroke="currentColor"
+                            stroke-width="2" />
+                    </svg>
+                    <span class="logo-text">AURORA</span>
+                </a>
+                <ul id="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index-2.html">SIGNATURE</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="header-actions">
+                    <div class="book-now-trigger" id="book-now-open">Book Now</div>
+                    <div class="user-account-trigger" id="auth-open">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                        </svg>
+                    </div>
+                    <div class="mobile-toggle" id="mobile-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <style>
+            /* Responsive Blog Detail Styles */
+            .blog-detail {
+                max-width: 800px;
+                padding: 160px 20px 80px;
+                margin: 0 auto;
+            }
+
+            .blog-header h1 {
+                font-size: clamp(2.5rem, 5vw, 4rem);
+                line-height: 1.1;
+                margin-top: 10px;
+                word-wrap: break-word;
+                /* Prevent cut-off on small screens */
+            }
+
+            .blog-hero-img img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/9;
+                object-fit: cover;
+                border-radius: 2px;
+                display: block;
+                /* Remove bottom space */
+            }
+
+            .blog-content {
+                font-size: clamp(1rem, 2.5vw, 1.15rem);
+                line-height: 1.8;
+                color: var(--text-secondary);
+            }
+
+            .blog-content p {
+                margin-bottom: 30px;
+            }
+
+            .blog-content img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 2px;
+            }
+
+            .blog-navigation {
+                margin-top: 80px;
+                padding-top: 40px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                /* Allow stacking on mobile */
+                gap: 20px;
+            }
+
+            /* Mobile-specific adjustments */
+            @media (max-width: 600px) {
+                .blog-detail {
+                    padding: 100px 20px 60px;
+                    /* Reduced top/bottom padding */
+                    width: 100%;
+                    max-width: 100%;
+                    box-sizing: border-box;
+                }
+
+                .blog-header {
+                    text-align: left;
+                    margin-bottom: 30px;
+                }
+
+                .blog-header h1 {
+                    font-size: clamp(2rem, 8vw, 2.5rem);
+                    /* Responsive heading */
+                    line-height: 1.2;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                    /* Ensure text breaking */
+                }
+
+                .blog-header span {
+                    font-size: 0.75rem;
+                    margin-bottom: 15px;
+                }
+
+                .blog-hero-img {
+                    margin-bottom: 30px;
+                    width: 100%;
+                }
+
+                .blog-hero-img img {
+                    aspect-ratio: 4/3;
+                    /* Taller hero on mobile */
+                }
+
+                .blog-content {
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    padding: 0;
+                }
+
+                .blog-content p {
+                    margin-bottom: 20px;
+                    text-align: justify;
+                    /* Cleaner text block */
+                }
+
+                .blog-content h3 {
+                    font-size: 1.4rem !important;
+                    margin: 30px 0 15px !important;
+                    line-height: 1.3;
+                }
+
+                .blog-content div {
+                    margin: 30px 0 !important;
+                    /* Adjust figure margin */
+                }
+
+                .blog-navigation {
+                    margin-top: 50px;
+                    padding-top: 30px;
+                    gap: 15px;
+                }
+
+                .blog-navigation a {
+                    width: 100%;
+                    padding: 15px;
+                    text-align: center;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    background: rgba(255, 255, 255, 0.02);
+                    display: block;
+                }
+            }
+        </style>
+
+        <article class="blog-detail container">
+            <header class="blog-header" style="text-align: center; margin-bottom: 60px;">
+                <span
+                    style="display: block; color: var(--gold-accent); margin-bottom: 20px; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; font-weight: 500;">January
+                    24, 2026</span>
+                <h1 class="luxury-text" style="color: var(--soft-white);">
+                    The Language of Light in Fashion
+                </h1>
+            </header>
+
+            <div class="blog-hero-img" style="margin-bottom: 60px;">
+                <img src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?auto=format&fit=crop&q=80&w=1200"
+                    alt="Fashion Lighting">
+            </div>
+
+            <div class="blog-content">
+                <p>Light is not merely a tool for visibility; in the realm of high fashion,
+                    it is the primary narrator. It shapes the silhouette, defines the texture of fabric, and evokes the
+                    unsaid emotions of the subject. At Aurora, we believe that understanding the nuance of light is what
+                    separates a photograph from a piece of art.</p>
+
+                <h3 class="luxury-text" style="font-size: 1.8rem; margin: 50px 0 25px; color: var(--soft-white);">
+                    Structuring the Shadow</h3>
+                <p>Contrary to popular belief, it is the shadow that defines the light. By
+                    carefully carving out areas of darkness, we guide the viewer's eye to the illuminated peaks—the
+                    curve of a cheekbone, the drape of silk, the glint of jewelry. This interplay creates a
+                    three-dimensional depth that feels almost tactile.</p>
+
+                <div style="margin: 60px 0;">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200"
+                        alt="Shadow Detail">
+                    <p
+                        style="font-size: 0.8rem; color: var(--neutral-accent); margin-top: 15px; text-align: center; font-style: italic;">
+                        Figure 1: High-contrast modulation in our recent Vogue editorial.</p>
+                </div>
+
+                <h3 class="luxury-text" style="font-size: 1.8rem; margin: 50px 0 25px; color: var(--soft-white);">The
+                    Blue Hour Advantage</h3>
+                <p>We often shoot during the "Blue Hour"—that fleeing moment just after
+                    sunset where the sky transforms into a deep, velvety canvas. This natural ambient light, combined
+                    with precise strobe work, produces a color palette that is both surreal and grounded, perfect for
+                    luxury campaigns that demand an otherworldly elegance.</p>
+            </div>
+
+            <div class="blog-navigation">
+                <a href="blog.html"
+                    style="color: var(--text-primary); text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; transition: color 0.3s;">&larr;
+                    Back to Journal</a>
+                <a href="blog-post-2.html"
+                    style="color: var(--text-primary); text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; transition: color 0.3s;">Next
+                    Article &rarr;</a>
+            </div>
+        </article>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-brand-link">
+                        <h3>
+                            <svg class="footer-logo-small" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6" />
+                                <path d="M30 70 L50 30 L70 70 M42 55 L58 55" fill="none" stroke="currentColor"
+                                    stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            AURORA
+                        </h3>
+                    </a>
+                    <p>Capturing the soul of the moment through a lens of luxury and precision. A visual narrative for
+                        the modern era.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Behance">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 7h-7v-2h7v2zm1.726 10c-.05.73-.24 1.451-.629 2.05-1.519 2.501-5.696 2.115-6.84 2.115-2.002 0-3.79-.76-5.01-2.13-2.06-2.17-1.57-6.52.88-8.29 1.4-1.04 3.09-1.34 4.67-1.03 2.16.48 4.29 2.05 4.69 5.37h-7.6 c.04 1.99 1.62 3.1 3.5 2.92 1.35-.12 2.45-.9 2.82-1.99h3.51zm-6.89-6.9c-1.48 0-2.5 1.05-2.69 2.4h5.27c-.12-1.58-1.32-2.4-2.58-2.4zm-10.236-5.1h-6.6v14h6.7c3.96 0 5.7-2.78 5.7-6.56 0-4.66-3.8-7.44-5.8-7.44zm-3.5 3h3.1c1.23 0 2.2 1.05 2.2 2.37 0 1.35-1.02 2.3-2.2 2.3h-3.1v-4.67zm0 7.4h3.35c1.48 0 2.45 1.1 2.45 2.53 0 1.55-1.2 2.58-2.55 2.58h-3.25v-5.11z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index-2.html">SIGNATURE</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="services.html">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Studio</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">The Journal</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#" onclick="document.getElementById('book-now-open').click()">Book Session</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AURORA PHOTOGRAPHY. ALL RIGHTS RESERVED.</p>
+                <div class="footer-legal">
+                    <p>New York · Paris · Tokyo</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="booking-modal">
+        <div class="modal-container">
+            <span class="modal-close">&times;</span>
+            <h2 class="luxury-text" style="margin-bottom: 30px;">Book a Session</h2>
+            <form id="booking-form" class="contact-form" style="opacity: 1; transform: none; animation: none;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="YOUR NAME" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="EMAIL ADDRESS" required>
+                    </div>
+                </div>
+                <!-- ... rest of modal ... -->
+                <div class="submit-container">
+                    <button type="submit" class="btn">Confirm Booking</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-container">
+            <span class="modal-close">&times;</span>
+            <div id="auth-view">
+                <!-- ... auth content ... -->
+                <div class="submit-container">
+                    <button type="submit" class="btn">Enter Studio</button>
+                </div>
+            </div>
+            <div class="dashboard-mock" id="dashboard-view">
+                <!-- ... dashboard content ... -->
+                <button class="btn" id="logout-btn">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Quick Fix for Modals in static page without full JS reload context sometimes
+        // Ensure main.js is loaded
+    </script>
+</body>
+
+</html>
