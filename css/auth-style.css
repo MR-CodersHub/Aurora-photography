@@ -1,0 +1,173 @@
+/* -----------------------------------------------------------
+   AUTHENTICATION PAGES (Standalone)
+----------------------------------------------------------- */
+.auth-page-body {
+    background-color: var(--primary-blue);
+    background-image: radial-gradient(circle at 50% 50%, rgba(17, 34, 64, 0.8) 0%, var(--primary-blue) 100%), url('../assets/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-page-container {
+    width: 100%;
+    max-width: 480px;
+}
+
+.auth-card {
+    background: rgba(17, 34, 64, 0.85);
+    /* Slightly darker for legibility */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border */
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+    /* Deep shadow */
+    border-radius: 20px;
+    /* Smooth corners */
+    padding: 50px 40px;
+    width: 100%;
+    animation: slideUpFade 0.8s ease-out;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auth-logo {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    text-decoration: none;
+    color: var(--soft-white);
+    transition: transform 0.3s ease;
+}
+
+.brand-icon-large {
+    width: 50px;
+    height: 50px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+}
+
+.brand-text-large {
+    font-family: var(--font-heading);
+    letter-spacing: 5px;
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    color: var(--soft-white);
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.auth-form .form-group {
+    margin-bottom: 25px;
+}
+
+.auth-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.forgot-password-link {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+}
+
+.forgot-password-link:hover {
+    color: var(--soft-white);
+    text-decoration: underline;
+}
+
+.auth-btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.auth-footer a {
+    color: var(--soft-white);
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* -----------------------------------------------------------
+   USER DROPDOWN MENU (Header)
+----------------------------------------------------------- */
+.user-dropdown-container {
+    position: relative;
+    z-index: 1002;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background: rgba(17, 34, 64, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 10px 0;
+    margin-top: 15px;
+    /* Spacing from icon */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    pointer-events: none;
+}
+
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 25px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--soft-white);
+    border-left-color: var(--soft-white);
+    transform: translateX(5px);
+    /* Only translation for dropdown items */
+}

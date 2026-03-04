@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Aurora Photography</title>
+    <meta name="description"
+        content="Aurora Photography administration panel. Manage bookings, content, users, and analytics.">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="dashboard-body admin-dashboard">
+
+    <!-- TOP HEADER -->
+    <header class="dash-header dash-header--admin">
+        <div class="dash-header-inner">
+            <a href="../index.html" style="text-decoration:none;" class="dash-brand">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="dash-logo-icon">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3" />
+                    <path d="M30 70 L50 30 L70 70 M40 55 L60 55" fill="none" stroke="currentColor" stroke-width="3" />
+                </svg>
+                <span class="dash-brand-name">AURORA</span>
+                <span class="admin-badge-tag">ADMIN</span>
+            </a>
+            <nav class="dash-nav" id="dashNav">
+                <button class="dash-nav-close" aria-label="Close menu" onclick="toggleMobileNav()">&times;</button>
+                <a href="#overview" class="dash-nav-link active" onclick="showSection('overview', this)">Overview</a>
+                <a href="#users" class="dash-nav-link" onclick="showSection('users', this)">Users</a>
+                <a href="#bookings" class="dash-nav-link" onclick="showSection('bookings', this)">Bookings</a>
+                <a href="#content" class="dash-nav-link" onclick="showSection('content', this)">Content</a>
+                <a href="#analytics" class="dash-nav-link" onclick="showSection('analytics', this)">Analytics</a>
+                <a href="#system" class="dash-nav-link" onclick="showSection('system', this)">System</a>
+            </nav>
+            <div class="dash-header-actions">
+                <div class="dash-user-badge" id="userBadge">
+                    <div class="dash-avatar dash-avatar--admin" id="userAvatar">A</div>
+                    <div class="dash-user-info">
+                        <span class="dash-user-role">Administrator</span>
+                        <span class="dash-user-email" id="headerEmail">admin@aurora.com</span>
+                    </div>
+                </div>
+                <a href="login.html" class="dash-logout-btn" id="logoutBtn" onclick="handleLogout(event)"
+                    title="Logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16,17 21,12 16,7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+                <button class="dash-hamburger" id="dashHamburger" aria-label="Open menu" onclick="toggleMobileNav()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="dash-main">
+
+        <!-- ── OVERVIEW SECTION ──────────────────────────── -->
+        <section class="dash-section active" id="overview">
+            <div class="dash-section-header">
+                <div>
+                    <h1 class="dash-page-title" id="welcomeTitle">Admin Control Panel</h1>
+                    <p class="dash-page-subtitle">Platform overview and quick actions.</p>
+                </div>
+                <button class="btn dash-cta-btn"
+                    onclick="showSection('bookings', document.querySelector('[href=\'#bookings\']'))">Manage
+                    Bookings</button>
+            </div>
+
+            <!-- Admin Stats -->
+            <div class="dash-stats-grid dash-stats-grid--5">
+                <div class="dash-stat-card">
+                    <div class="stat-icon stat-icon--blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">1,248</span>
+                        <span class="stat-label">Total Users</span>
+                        <span class="stat-delta stat-delta--up">+12 this week</span>
+                    </div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon stat-icon--gold">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">84</span>
+                        <span class="stat-label">Active Bookings</span>
+                        <span class="stat-delta stat-delta--up">+7 today</span>
+                    </div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon stat-icon--green">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">$24.8k</span>
+                        <span class="stat-label">Monthly Revenue</span>
+                        <span class="stat-delta stat-delta--up">+18%</span>
+                    </div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon stat-icon--purple">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21,15 16,10 5,21"></polyline>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">3,527</span>
+                        <span class="stat-label">Photos Delivered</span>
+                        <span class="stat-delta stat-delta--up">+234 this month</span>
+                    </div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon stat-icon--red">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">3</span>
+                        <span class="stat-label">Pending Approvals</span>
+                        <span class="stat-delta stat-delta--alert">Needs review</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two column -->
+            <div class="dash-grid-2col">
+
+                <!-- Recent Registrations -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title">Recent Registrations</h3>
+                        <a href="#users" class="dash-link" onclick="showSection('users', null)">View all →</a>
+                    </div>
+                    <ul class="dash-user-list">
+                        <li class="dash-user-row">
+                            <div class="mini-avatar" style="background:#1a2a4a;">S</div>
+                            <div class="mini-user-info">
+                                <span>sarah.m@email.com</span>
+                                <small>Registered 2 hours ago</small>
+                            </div>
+                            <span class="status-pill status-pill--confirmed">New</span>
+                        </li>
+                        <li class="dash-user-row">
+                            <div class="mini-avatar" style="background:#2d1f4e;">J</div>
+                            <div class="mini-user-info">
+                                <span>james.w@email.com</span>
+                                <small>Registered 5 hours ago</small>
+                            </div>
+                            <span class="status-pill status-pill--confirmed">New</span>
+                        </li>
+                        <li class="dash-user-row">
+                            <div class="mini-avatar" style="background:#1f3a2d;">E</div>
+                            <div class="mini-user-info">
+                                <span>emily.k@email.com</span>
+                                <small>Registered yesterday</small>
+                            </div>
+                            <span class="status-pill status-pill--completed">Active</span>
+                        </li>
+                        <li class="dash-user-row">
+                            <div class="mini-avatar" style="background:#3a1f1f;">R</div>
+                            <div class="mini-user-info">
+                                <span>robert.d@email.com</span>
+                                <small>Registered 2 days ago</small>
+                            </div>
+                            <span class="status-pill status-pill--completed">Active</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pending Approvals -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title">Pending Approvals</h3>
+                        <span class="dash-badge dash-badge--alert">3 items</span>
+                    </div>
+                    <ul class="dash-approval-list">
+                        <li class="approval-row">
+                            <div class="approval-info">
+                                <h4>Wedding Package Request</h4>
+                                <p>Jennifer & Mark · Apr 12, 2025</p>
+                            </div>
+                            <div class="approval-actions">
+                                <button class="approval-btn approval-btn--accept">Accept</button>
+                                <button class="approval-btn approval-btn--reject">Decline</button>
+                            </div>
+                        </li>
+                        <li class="approval-row">
+                            <div class="approval-info">
+                                <h4>Commercial Shoot — Retainer</h4>
+                                <p>TechCorp Inc. · Mar 28, 2025</p>
+                            </div>
+                            <div class="approval-actions">
+                                <button class="approval-btn approval-btn--accept">Accept</button>
+                                <button class="approval-btn approval-btn--reject">Decline</button>
+                            </div>
+                        </li>
+                        <li class="approval-row">
+                            <div class="approval-info">
+                                <h4>Fine Art Print Order</h4>
+                                <p>Lucas N. · Mar 20, 2025</p>
+                            </div>
+                            <div class="approval-actions">
+                                <button class="approval-btn approval-btn--accept">Accept</button>
+                                <button class="approval-btn approval-btn--reject">Decline</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Quick actions -->
+            <div class="dash-card dash-card--full">
+                <div class="dash-card-header">
+                    <h3 class="dash-card-title">Quick Actions</h3>
+                </div>
+                <div class="admin-actions-grid">
+                    <button class="admin-action-card"
+                        onclick="showSection('users', document.querySelector('[href=\'#users\']'))">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <span>Manage Users</span>
+                    </button>
+                    <button class="admin-action-card"
+                        onclick="showSection('bookings', document.querySelector('[href=\'#bookings\']'))">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>All Bookings</span>
+                    </button>
+                    <button class="admin-action-card"
+                        onclick="showSection('content', document.querySelector('[href=\'#content\']'))">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span>Edit Content</span>
+                    </button>
+                    <button class="admin-action-card"
+                        onclick="showSection('analytics', document.querySelector('[href=\'#analytics\']'))">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                        <span>View Analytics</span>
+                    </button>
+                    <button class="admin-action-card"
+                        onclick="showSection('system', document.querySelector('[href=\'#system\']'))">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.07 4.93l-1.41 1.41A8 8 0 1 0 20 12h2a10 10 0 1 1-2.93-7.07z"></path>
+                        </svg>
+                        <span>System Settings</span>
+                    </button>
+                    <button class="admin-action-card" onclick="window.open('../home2.html', '_blank')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15,3 21,3 21,9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        <span>View Website</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── USERS SECTION ──────────────────────────── -->
+        <section class="dash-section" id="users">
+            <div class="dash-section-header">
+                <div>
+                    <h1 class="dash-page-title">User Management</h1>
+                    <p class="dash-page-subtitle">View and manage all registered users.</p>
+                </div>
+                <button class="btn dash-cta-btn">Add New User</button>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <h3 class="dash-card-title">All Users (1,248)</h3>
+                    <div class="dash-filter-row">
+                        <span class="dash-filter-chip dash-filter-chip--active">All</span>
+                        <span class="dash-filter-chip">Active</span>
+                        <span class="dash-filter-chip">Inactive</span>
+                        <span class="dash-filter-chip">Admins</span>
+                    </div>
+                </div>
+                <div class="dash-table-wrap">
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Bookings</th>
+                                <th>Joined</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <div class="mini-avatar"
+                                            style="background:#1a2a4a;width:32px;height:32px;font-size:0.8rem;">S</div>
+                                        Sarah Mitchell
+                                    </div>
+                                </td>
+                                <td>sarah.m@email.com</td>
+                                <td><span class="status-pill">User</span></td>
+                                <td>3</td>
+                                <td>Feb 24, 2025</td>
+                                <td><span class="status-pill status-pill--confirmed">Active</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Edit</button><button
+                                            class="tbl-btn tbl-btn--danger">Remove</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <div class="mini-avatar"
+                                            style="background:#2d1f4e;width:32px;height:32px;font-size:0.8rem;">J</div>
+                                        James Wong
+                                    </div>
+                                </td>
+                                <td>james.w@email.com</td>
+                                <td><span class="status-pill">User</span></td>
+                                <td>1</td>
+                                <td>Feb 24, 2025</td>
+                                <td><span class="status-pill status-pill--confirmed">Active</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Edit</button><button
+                                            class="tbl-btn tbl-btn--danger">Remove</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <div class="mini-avatar"
+                                            style="background:#1f3a2d;width:32px;height:32px;font-size:0.8rem;">E</div>
+                                        Emily Kodak
+                                    </div>
+                                </td>
+                                <td>emily.k@email.com</td>
+                                <td><span class="status-pill status-pill--gold">Admin</span></td>
+                                <td>7</td>
+                                <td>Jan 10, 2025</td>
+                                <td><span class="status-pill status-pill--confirmed">Active</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Edit</button><button
+                                            class="tbl-btn tbl-btn--danger">Remove</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <div class="mini-avatar"
+                                            style="background:#3a2a1a;width:32px;height:32px;font-size:0.8rem;">R</div>
+                                        Robert Dunn
+                                    </div>
+                                </td>
+                                <td>robert.d@email.com</td>
+                                <td><span class="status-pill">User</span></td>
+                                <td>0</td>
+                                <td>Feb 22, 2025</td>
+                                <td><span class="status-pill status-pill--pending">Inactive</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Edit</button><button
+                                            class="tbl-btn tbl-btn--danger">Remove</button></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── BOOKINGS SECTION ──────────────────────────── -->
+        <section class="dash-section" id="bookings">
+            <div class="dash-section-header">
+                <div>
+                    <h1 class="dash-page-title">Booking Management</h1>
+                    <p class="dash-page-subtitle">Manage all photography session bookings.</p>
+                </div>
+                <button class="btn dash-cta-btn">Create Booking</button>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <h3 class="dash-card-title">All Bookings (84)</h3>
+                    <div class="dash-filter-row">
+                        <span class="dash-filter-chip dash-filter-chip--active">All</span>
+                        <span class="dash-filter-chip">Upcoming</span>
+                        <span class="dash-filter-chip">Completed</span>
+                        <span class="dash-filter-chip">Pending</span>
+                    </div>
+                </div>
+                <div class="dash-table-wrap">
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Session Type</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jennifer & Mark</td>
+                                <td>Wedding</td>
+                                <td>Apr 12, 2025</td>
+                                <td>Rosewood Estate</td>
+                                <td>8 hrs</td>
+                                <td><span class="status-pill status-pill--pending">Pending</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Approve</button><button
+                                            class="tbl-btn tbl-btn--danger">Decline</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TechCorp Inc.</td>
+                                <td>Commercial</td>
+                                <td>Mar 28, 2025</td>
+                                <td>Corporate HQ</td>
+                                <td>4 hrs</td>
+                                <td><span class="status-pill status-pill--pending">Pending</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Approve</button><button
+                                            class="tbl-btn tbl-btn--danger">Decline</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sarah Mitchell</td>
+                                <td>Portrait</td>
+                                <td>Mar 15, 2025</td>
+                                <td>Studio A</td>
+                                <td>2 hrs</td>
+                                <td><span class="status-pill status-pill--confirmed">Confirmed</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">View</button><button
+                                            class="tbl-btn">Reschedule</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Lucas N.</td>
+                                <td>Fine Art</td>
+                                <td>Mar 20, 2025</td>
+                                <td>Gallery Space</td>
+                                <td>3 hrs</td>
+                                <td><span class="status-pill status-pill--pending">Pending</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Approve</button><button
+                                            class="tbl-btn tbl-btn--danger">Decline</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Emily Chen</td>
+                                <td>Editorial</td>
+                                <td>Feb 20, 2025</td>
+                                <td>Location TBD</td>
+                                <td>5 hrs</td>
+                                <td><span class="status-pill status-pill--completed">Completed</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">View</button></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CONTENT SECTION ──────────────────────────── -->
+        <section class="dash-section" id="content">
+            <div class="dash-section-header">
+                <div>
+                    <h1 class="dash-page-title">Content Management</h1>
+                    <p class="dash-page-subtitle">Manage blog posts, galleries, and site content.</p>
+                </div>
+                <button class="btn dash-cta-btn">New Article</button>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <h3 class="dash-card-title">Blog Posts</h3>
+                    <div class="dash-filter-row">
+                        <span class="dash-filter-chip dash-filter-chip--active">All</span>
+                        <span class="dash-filter-chip">Published</span>
+                        <span class="dash-filter-chip">Draft</span>
+                    </div>
+                </div>
+                <div class="dash-table-wrap">
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>The Art of Golden Hour Photography</td>
+                                <td>Aurora Team</td>
+                                <td>Tips</td>
+                                <td>Feb 20, 2025</td>
+                                <td><span class="status-pill status-pill--confirmed">Published</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Edit</button><button
+                                            class="tbl-btn tbl-btn--danger">Delete</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Behind the Lens: A Wedding Story</td>
+                                <td>Aurora Team</td>
+                                <td>Stories</td>
+                                <td>Feb 12, 2025</td>
+                                <td><span class="status-pill status-pill--confirmed">Published</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Edit</button><button
+                                            class="tbl-btn tbl-btn--danger">Delete</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Choosing the Right Photography Package</td>
+                                <td>Aurora Team</td>
+                                <td>Guide</td>
+                                <td>Mar 1, 2025</td>
+                                <td><span class="status-pill status-pill--pending">Draft</span></td>
+                                <td>
+                                    <div class="table-actions"><button class="tbl-btn">Edit</button><button
+                                            class="tbl-btn">Publish</button></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── ANALYTICS SECTION ──────────────────────────── -->
+        <section class="dash-section" id="analytics">
+            <div class="dash-section-header">
+                <div>
+                    <h1 class="dash-page-title">Analytics Overview</h1>
+                    <p class="dash-page-subtitle">Track platform performance and user engagement.</p>
+                </div>
+            </div>
+            <div class="dash-grid-2col">
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title">Revenue by Service</h3>
+                    </div>
+                    <div class="analytics-bar-chart">
+                        <div class="bar-row">
+                            <span class="bar-label">Wedding</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:78%;background:#94a3b8;"></div>
+                            </div>
+                            <span class="bar-value">$9,200</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Portrait</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:55%;background:#5b7fa6;"></div>
+                            </div>
+                            <span class="bar-value">$6,500</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Commercial</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:45%;background:#6a5acd;"></div>
+                            </div>
+                            <span class="bar-value">$5,300</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Editorial</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:25%;background:#4aab7a;"></div>
+                            </div>
+                            <span class="bar-value">$2,900</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Fine Art</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:15%;background:#e05c5c;"></div>
+                            </div>
+                            <span class="bar-value">$900</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title">Monthly Bookings Trend</h3>
+                    </div>
+                    <div class="analytics-bar-chart analytics-bar-chart--months">
+                        <div class="bar-row">
+                            <span class="bar-label">Oct</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:40%;"></div>
+                            </div>
+                            <span class="bar-value">32</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Nov</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:60%;"></div>
+                            </div>
+                            <span class="bar-value">48</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Dec</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:80%;"></div>
+                            </div>
+                            <span class="bar-value">64</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Jan</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:50%;"></div>
+                            </div>
+                            <span class="bar-value">40</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Feb</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:70%;"></div>
+                            </div>
+                            <span class="bar-value">56</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dash-card dash-card--full">
+                <div class="dash-card-header">
+                    <h3 class="dash-card-title">Key Metrics</h3>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-value">4.8/5</span>
+                        <span class="metric-label">Avg. Client Rating</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">92%</span>
+                        <span class="metric-label">Booking Completion Rate</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">3.2 days</span>
+                        <span class="metric-label">Avg. Delivery Time</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">68%</span>
+                        <span class="metric-label">Returning Clients</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── SYSTEM SECTION ──────────────────────────── -->
+        <section class="dash-section" id="system">
+            <div class="dash-section-header">
+                <div>
+                    <h1 class="dash-page-title">System Settings</h1>
+                    <p class="dash-page-subtitle">Configure platform settings and security.</p>
+                </div>
+            </div>
+            <div class="dash-grid-2col">
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title">General Settings</h3>
+                    </div>
+                    <div class="settings-form">
+                        <div class="settings-field">
+                            <label>Studio Name</label>
+                            <input type="text" class="form-control" value="Aurora Photography Studio">
+                        </div>
+                        <div class="settings-field">
+                            <label>Contact Email</label>
+                            <input type="email" class="form-control" value="hello@aurora-photography.com">
+                        </div>
+                        <div class="settings-field">
+                            <label>Booking Confirmation Mode</label>
+                            <select class="form-control" style="cursor:pointer;">
+                                <option>Manual Approval</option>
+                                <option>Auto Confirmation</option>
+                            </select>
+                        </div>
+                        <button class="btn full-width auth-btn" style="opacity:1;transform:none;animation:none;">Save
+                            Settings</button>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title">System Preferences</h3>
+                    </div>
+                    <div class="settings-form">
+                        <div class="pref-row">
+                            <div>
+                                <h4>Maintenance Mode</h4>
+                                <p>Show maintenance page to visitors</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-track"></span>
+                            </label>
+                        </div>
+                        <div class="pref-row">
+                            <div>
+                                <h4>New Registrations</h4>
+                                <p>Allow new users to sign up</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-track"></span>
+                            </label>
+                        </div>
+                        <div class="pref-row">
+                            <div>
+                                <h4>Admin Notifications</h4>
+                                <p>Email alerts for new bookings</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-track"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="dash-card-header" style="margin-top:30px;">
+                        <h3 class="dash-card-title">Admin Access</h3>
+                    </div>
+                    <button class="btn full-width" onclick="handleLogout(event)"
+                        style="opacity:1;transform:none;animation:none;border-color:rgba(255,100,100,0.4);color:#ff6464;">
+                        Log Out of Admin Panel
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Mobile nav overlay -->
+    <div class="dash-mobile-overlay" id="dashOverlay" onclick="toggleMobileNav()"></div>
+
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // ── Session Guard ────────────────────────────────────
+        (function () {
+            const role = localStorage.getItem('aurora_role');
+            const email = localStorage.getItem('aurora_email');
+            const auth = localStorage.getItem('aurora_auth');
+
+            // Admin credentials validation
+            const ADMIN_EMAIL = 'admin@gmail.com';
+            const ADMIN_PASSWORD_HASH = 'admin123'; // In production, use proper password hashing
+
+            // Check if user is authenticated
+            if (!auth || !email) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Verify admin role has correct credentials
+            if (role === 'admin') {
+                // For admin access, verify the stored email is the admin email
+                if (email !== ADMIN_EMAIL) {
+                    localStorage.removeItem('aurora_role');
+                    localStorage.removeItem('aurora_email');
+                    localStorage.removeItem('aurora_auth');
+                    window.location.href = 'login.html';
+                    return;
+                }
+            }
+
+            // Populate welcome info
+            const initial = email.charAt(0).toUpperCase();
+            document.getElementById('userAvatar').textContent = initial;
+            document.getElementById('headerEmail').textContent = email;
+            document.getElementById('welcomeTitle').textContent = 'Welcome, Admin ' + email.split('@')[0];
+        })();
+
+        // ── Section switching ────────────────────────────────
+        function showSection(id, linkEl) {
+            document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.dash-nav-link').forEach(l => l.classList.remove('active'));
+            if (linkEl) {
+                linkEl.classList.add('active');
+            } else {
+                const match = document.querySelector(`.dash-nav-link[href="#${id}"]`);
+                if (match) match.classList.add('active');
+            }
+            closeMobileNav();
+            return false;
+        }
+
+        // ── Logout ───────────────────────────────────────────
+        function handleLogout(e) {
+            e.preventDefault();
+            localStorage.removeItem('aurora_role');
+            localStorage.removeItem('aurora_email');
+            localStorage.removeItem('aurora_auth');
+            window.location.href = 'login.html';
+        }
+
+        // ── Mobile nav ───────────────────────────────────────
+        function toggleMobileNav() {
+            document.getElementById('dashNav').classList.toggle('open');
+            document.getElementById('dashOverlay').classList.toggle('visible');
+            document.getElementById('dashHamburger').classList.toggle('open');
+        }
+        function closeMobileNav() {
+            document.getElementById('dashNav').classList.remove('open');
+            document.getElementById('dashOverlay').classList.remove('visible');
+            document.getElementById('dashHamburger').classList.remove('open');
+        }
+    </script>
+</body>
+
+</html>
